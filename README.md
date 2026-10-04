@@ -1,0 +1,1 @@
+# konkurs_sberindex_2026
