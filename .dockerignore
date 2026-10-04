@@ -1,0 +1,25 @@
+# В образ попадает то же, что хранится в git: код, конфиги, сырые данные, отчёты.
+
+.git
+.env*
+.venv
+.pytest_cache
+.ruff_cache
+.hypothesis
+**/__pycache__
+**/*.pyc
+**/.DS_Store
+lightning_logs
+
+# Результаты прогонов и производные данные монтируются с хоста (см. docker-compose.yml).
+artifacts
+data/interim
+data/processed
+data/external
+data/raw/**/*.csv
+
+# Не нужно для запуска.
+demo.webm
+Dockerfile
+.dockerignore
+docker-compose.yml

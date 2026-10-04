@@ -1,0 +1,58 @@
+# Запуск решения в Docker.
+#
+#   docker compose up -d                       лендинг: http://localhost:8080
+#   docker compose run --rm sbx make test      тесты в контейнере
+#   docker compose run --rm sbx sbx --help     любая команда CLI или цель Makefile
+#   docker compose run --rm pipeline           полный прогон: make all
+#
+# Лендинг — лёгкий сервис, тяжёлый образ для него не собирается. Сервисы sbx и pipeline
+# читают и пишут ./data, ./artifacts и ./reports на хосте, поэтому после `make report`
+# достаточно обновить страницу лендинга.
+#
+# Настройки через переменные окружения:
+#   SBX_LANDING_PORT   порт лендинга на хосте (8080)
+#   SBX_LANDING_BIND   адрес, на котором он слушает (127.0.0.1; 0.0.0.0 — открыть в локальной сети)
+#   SBX_UID, SBX_GID   пользователь внутри образа (1000:1000), см. Dockerfile
+
+name: sbx
+
+x-sbx: &sbx
+  image: sbx:latest
+  build:
+    context: .
+    args:
+      SBX_UID: ${SBX_UID:-1000}
+      SBX_GID: ${SBX_GID:-1000}
+  init: true
+  volumes:
+    - ./data:/app/data
+    - ./artifacts:/app/artifacts
+    - ./reports:/app/reports
+    # Веса Chronos-2 и TimesFM 2.5 с Hugging Face и JIT-кэш numba: скачиваются один раз.
+    - cache:/cache
+
+services:
+  landing:
+    image: nginx:1.30-alpine
+    ports:
+      - "${SBX_LANDING_BIND:-127.0.0.1}:${SBX_LANDING_PORT:-8080}:80"
+    volumes:
+      - ./reports/landing:/usr/share/nginx/html:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/index.html"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  sbx:
+    <<: *sbx
+    profiles: [cli]
+    command: ["sbx", "--help"]
+
+  pipeline:
+    <<: *sbx
+    profiles: [pipeline]
+    command: ["make", "all"]
+
+volumes:
+  cache:

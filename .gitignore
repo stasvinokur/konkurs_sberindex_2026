@@ -1,0 +1,16 @@
+# Unpacked CSVs are reproducible from the zip archives next to them
+data/raw/**/*.csv
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+data/interim/
+data/processed/
+data/external/
+# Каталог существует в клоне (Docker монтирует его с хоста), содержимое в git не хранится
+artifacts/*
+!artifacts/.gitkeep
+lightning_logs/

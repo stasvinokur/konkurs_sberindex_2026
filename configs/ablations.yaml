@@ -1,0 +1,57 @@
+# Матрица абляций A–F.
+baseline: A
+
+# Варианты набора внешних признаков для глобальной модели. Блоки и их привязка ко времени —
+# `shell/pipelines/features.py::load_feature_blocks`: calendar известен заранее и берётся на
+# целевой месяц; macro (национальные ряды) и news (новости GDELT и календарь событий) — по
+# состоянию на момент прогноза.
+feature_variants:
+  A:
+    blocks: []
+    model_name: "LightGBM (A: Сбер)"
+    tune: false
+  B:
+    blocks: [calendar, macro]
+    model_name: "LightGBM (B: +макро)"
+    tune: false
+  C:
+    blocks: [calendar, macro, news]
+    model_name: "LightGBM (C: +новости)"
+    tune: false
+
+configurations:
+  A: {models: ["LightGBM (A: Сбер)"]}
+  B: {models: ["LightGBM (B: +макро)"]}
+  C: {models: ["LightGBM (C: +новости)"]}
+  D: {models: ["LightGBM (B: +макро)", "Chronos-2", "Chronos-2 (covariates)"]}
+  E: {models: ["LightGBM (C: +новости)", "Chronos-2", "Chronos-2 (covariates)", "TimesFM-2.5", "AutoTheta"]}
+  F: {models: ["LightGBM (C: +новости)", "Chronos-2", "Chronos-2 (covariates)", "TimesFM-2.5", "AutoTheta"]}
+
+# Пары для теста Диболда–Мариано: mean_diff < 0 — левая конфигурация точнее правой.
+dm_pairs:
+  - [B, A]   # вклад календаря и национальных рядов
+  - [C, B]   # вклад новостей
+  - [D, B]   # вклад foundation-моделей
+  - [E, A]   # всё против базы «только данные Сбера»
+
+
+# Вклад каждого источника по отдельности. Для источника считаются два варианта
+# LightGBM: вариант `base` плюс блок источника и вариант `on_top_of` плюс тот же блок. Блок,
+# который уже входит в вариант, поверх него не считается. Блоки — те же, что выше; новости
+# GDELT и календарь событий здесь разделены, а `access` и `neighbours` построены по таблицам
+# организаторов (доступность рынков и автодорожные связи между МО).
+sources:
+  base: A
+  on_top_of: B
+  blocks:
+    calendar: Производственный календарь
+    macro: Национальные ряды СберИндекса
+    gdelt: Новости GDELT
+    events: Календарь событий
+    access: Доступность рынков и расстояние до соседних МО
+    neighbours: Расходы соседних МО по автодорогам
+    # Источник из двух блоков: отклонения погоды на момент прогноза и норма целевого месяца.
+    weather:
+      title: Погода NASA POWER
+      blocks: [weather, climate]
+    population: Численность населения МО (Росстат)

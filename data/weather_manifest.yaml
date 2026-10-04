@@ -1,0 +1,21 @@
+source: 'NASA POWER, реанализ MERRA-2: месячные значения по ячейкам сетки'
+api: https://power.larc.nasa.gov/api/temporal/monthly/point
+parameters:
+- T2M
+- PRECTOTCORR
+community: AG
+norm_years:
+- 2001
+- 2020
+cells: 1341
+rows: 48276
+first_month: 2022-01
+last_month: 2024-12
+downloaded: '2026-10-02'
+file: power_monthly.parquet
+sha256: 9155bcc7a674c2be38f33c32ac897ac9234d246d824fbfd18d25055e39fdd2d8
+citation: The data was obtained from National Aeronautics and Space Administration
+  (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER)
+  project funded through the NASA Earth Science Division.
+data_reference: The data was obtained from the POWER Project's Monthly and Annual
+  2.10.0 version on 2026/10/02.

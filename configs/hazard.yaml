@@ -1,0 +1,22 @@
+# Модель вероятности структурного шока на 1–3 месяца вперёд.
+horizons: [1, 2, 3]
+train_share: 0.6
+# Доля обучающей части, идущая на подгонку; остаток — отложенная калибровка порога тревоги.
+fit_share: 0.75
+seed: 20260916
+alarm_threshold: 0.5
+margin: 1
+# Выбрасывать признаки, одинаковые для всех рядов внутри месяца: на бенчмарке они
+# эквивалентны позиции в ряду и позволяют модели выучить форму разметки.
+drop_series_invariant: true
+num_boost_round: 300
+# Ключ набора тревог из artifacts/cpd/alarms.json, который используется и как признак,
+# и как эталон сравнения.
+detector_alarms_key: "online::cusum::residual"
+params:
+  learning_rate: 0.05
+  num_leaves: 31
+  min_data_in_leaf: 50
+# Внешние признаки (строятся отдельным шагом; при отсутствии файла просто не подключаются).
+exogenous:
+  news: artifacts/news/region_month_features.parquet

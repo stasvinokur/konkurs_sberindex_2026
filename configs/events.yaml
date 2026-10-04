@@ -1,0 +1,153 @@
+# Курируемый календарь событий, влияющих на потребление.
+#
+# Поля: date — начало события; published_at — когда о событии стало известно (для point-in-time);
+# region_code — код субъекта по нашему справочнику (`all` — вся страна); kind — тип события;
+# source — проверяемый источник.
+#
+# События GDELT шумные и не всегда экономически значимые, поэтому ключевые решения и ЧС
+# перечислены явно: это повышает интерпретируемость разборов и даёт модели «чистые» признаки.
+
+events:
+  # --- Решения Банка России по ключевой ставке (заседания Совета директоров) ---
+  - date: "2022-02-28"
+    published_at: "2022-02-28"
+    region_code: all
+    kind: key_rate_hike
+    description: "Ключевая ставка повышена с 9,5% до 20% годовых (внеочередное заседание)"
+    source: "https://www.cbr.ru/press/pr/?file=28022022_094500key.htm"
+  - date: "2022-04-08"
+    published_at: "2022-04-08"
+    region_code: all
+    kind: key_rate_cut
+    description: "Ключевая ставка снижена на 300 б.п., до 17,00% годовых"
+    source: "https://cbr.ru/press/pr/?file=08042022_114000key.htm"
+  - date: "2022-04-29"
+    published_at: "2022-04-29"
+    region_code: all
+    kind: key_rate_cut
+    description: "Ключевая ставка снижена на 300 б.п., до 14,00% годовых"
+    source: "https://cbr.ru/press/pr/?file=29042022_133000Key.htm"
+  - date: "2022-05-26"
+    published_at: "2022-05-26"
+    region_code: all
+    kind: key_rate_cut
+    description: "Ключевая ставка снижена на 300 б.п., до 11,00% годовых (внеочередное заседание)"
+    source: "https://www.cbr.ru/press/pr/?file=26052022_103000key.htm"
+  - date: "2022-06-10"
+    published_at: "2022-06-10"
+    region_code: all
+    kind: key_rate_cut
+    description: "Ключевая ставка снижена на 150 б.п., до 9,50% годовых"
+    source: "https://www.cbr.ru/press/pr/?file=10062022_133000Key.htm"
+  - date: "2022-07-22"
+    published_at: "2022-07-22"
+    region_code: all
+    kind: key_rate_cut
+    description: "Ключевая ставка снижена на 150 б.п., до 8,00% годовых"
+    source: "https://www.cbr.ru/press/pr/?file=22072022_133000Key.htm"
+  - date: "2022-09-16"
+    published_at: "2022-09-16"
+    region_code: all
+    kind: key_rate_cut
+    description: "Ключевая ставка снижена на 50 б.п., до 7,50% годовых"
+    source: "https://www.cbr.ru/press/keypr/"
+  - date: "2023-07-21"
+    published_at: "2023-07-21"
+    region_code: all
+    kind: key_rate_hike
+    description: "Начало цикла повышения: ключевая ставка 8,5% годовых"
+    source: "https://www.cbr.ru/press/keypr/"
+  - date: "2023-08-15"
+    published_at: "2023-08-15"
+    region_code: all
+    kind: key_rate_hike
+    description: "Внеочередное заседание: ключевая ставка повышена до 12% годовых"
+    source: "https://www.cbr.ru/press/keypr/"
+  - date: "2023-09-15"
+    published_at: "2023-09-15"
+    region_code: all
+    kind: key_rate_hike
+    description: "Ключевая ставка повышена до 13% годовых"
+    source: "https://www.cbr.ru/press/keypr/"
+  - date: "2023-10-27"
+    published_at: "2023-10-27"
+    region_code: all
+    kind: key_rate_hike
+    description: "Ключевая ставка повышена до 15% годовых"
+    source: "https://www.cbr.ru/press/keypr/"
+  - date: "2023-12-15"
+    published_at: "2023-12-15"
+    region_code: all
+    kind: key_rate_hike
+    description: "Ключевая ставка повышена до 16% годовых"
+    source: "https://www.cbr.ru/press/keypr/"
+  - date: "2024-07-26"
+    published_at: "2024-07-26"
+    region_code: all
+    kind: key_rate_hike
+    description: "Ключевая ставка повышена до 18% годовых"
+    source: "https://www.cbr.ru/press/keypr/"
+  - date: "2024-09-13"
+    published_at: "2024-09-13"
+    region_code: all
+    kind: key_rate_hike
+    description: "Ключевая ставка повышена до 19% годовых"
+    source: "https://www.cbr.ru/press/keypr/"
+  - date: "2024-10-25"
+    published_at: "2024-10-25"
+    region_code: all
+    kind: key_rate_hike
+    description: "Ключевая ставка повышена до 21% годовых"
+    source: "https://www.cbr.ru/press/keypr/"
+
+  # --- Национальные шоки (для длинных рядов и оценки CPD на реальных данных) ---
+  - date: "2020-03-01"
+    published_at: "2020-03-25"
+    region_code: all
+    kind: pandemic_restrictions
+    description: "Нерабочие дни и ограничения COVID-19: обвал расходов на услуги и общепит"
+    source: "Указ Президента РФ от 25.03.2020 № 206"
+  - date: "2022-03-01"
+    published_at: "2022-02-24"
+    region_code: all
+    kind: macro_shock
+    description: "Февраль–март 2022: ажиотажный спрос, затем спад потребления"
+    source: "Обзоры СберИндекса и Банка России за март 2022"
+  - date: "2022-09-01"
+    published_at: "2022-09-21"
+    region_code: all
+    kind: macro_shock
+    description: "Сентябрь 2022: частичная мобилизация, спад потребительской активности"
+    source: "Указ Президента РФ от 21.09.2022 № 647"
+
+  # --- Региональные события 2023–2024, видимые в данных МО ---
+  - date: "2024-04-01"
+    published_at: "2024-04-05"
+    region_code: "53"
+    kind: flood
+    description: "Паводок в Орске и Оренбургской области, режим ЧС федерального характера"
+    source: "https://www.mchs.gov.ru/ (режим ЧС в Оренбургской области, апрель 2024)"
+  - date: "2024-04-01"
+    published_at: "2024-04-08"
+    region_code: "71"
+    kind: flood
+    description: "Паводок в Курганской и Тюменской областях, режим ЧС"
+    source: "https://www.mchs.gov.ru/ (режим ЧС, апрель 2024)"
+  - date: "2024-04-01"
+    published_at: "2024-04-08"
+    region_code: "37"
+    kind: flood
+    description: "Паводок в Курганской области, режим ЧС регионального характера"
+    source: "https://www.mchs.gov.ru/ (режим ЧС, апрель 2024)"
+  - date: "2024-08-01"
+    published_at: "2024-08-06"
+    region_code: "38"
+    kind: emergency_evacuation
+    description: "Август 2024: режим ЧС и эвакуация в приграничных районах Курской области"
+    source: "Сообщения МЧС и администрации Курской области, август 2024"
+  - date: "2023-06-01"
+    published_at: "2023-06-24"
+    region_code: "60"
+    kind: local_disruption
+    description: "Июнь 2023: кратковременный режим КТО в Ростовской области"
+    source: "Сообщения НАК и администрации Ростовской области, июнь 2023"

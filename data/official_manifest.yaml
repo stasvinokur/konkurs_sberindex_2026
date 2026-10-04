@@ -1,0 +1,42 @@
+source: 'Лаборатория СберИндекс: набор данных конкурса по муниципальным образованиям'
+files:
+- path: raw/sberindex-municipal/hackathonlicence.zip
+  url: https://www.sberbank.com/common/img/uploaded/files/pdf/sberindex/hackathonlicence.zip
+  sha256: a9f932ff4096a7df797d1547987937f34d3995ac445b4748177114488d12b010
+  title: Расходы на уровне МО, индекс доступности рынков, транспортные связи между
+    МО
+  license: CC BY-SA 4.0
+  citations:
+  - Потребительские безналичные расходы на уровне муниципальных образований по категориям
+    трат. СберИндекс. Данные доступны по адресу https://sberindex.ru/ru/research/data-sense-opisanie-nabora-dannikh-khakatona-sberindeksa-po-munitsipalnim-dannim
+    (данные скачаны 2026-10-02).
+  - Индекс доступности рынков на уровне муниципальных образований. СберИндекс. Данные
+    доступны по адресу https://sberindex.ru/ru/research/data-sense-opisanie-nabora-dannikh-khakatona-sberindeksa-po-munitsipalnim-dannim
+    (данные скачаны 2026-10-02).
+  - Автодорожные и железнодорожные связи между муниципальными образованиями. СберИндекс.
+    Данные доступны по адресу https://sberindex.ru/ru/research/data-sense-opisanie-nabora-dannikh-khakatona-sberindeksa-po-munitsipalnim-dannim
+    (данные скачаны 2026-10-02).
+  retrieved: '2026-10-02'
+- path: raw/sberindex-municipal/t_dict_municipal_districts.xlsx
+  url: https://s.sber.ru/GthXk7
+  sha256: 4150658c3298fbc87ed79838f503f3a5b9a28da33257ff803c7d9231ddb775d6
+  title: 'Справочник территорий: границы и изменения муниципальных образований'
+  license: CC BY-SA 4.0
+  citations:
+  - Данные о границах и преобразованиях муниципальных образований. Сбериндекс. Данные
+    доступны по адресу https://sberindex.ru/ru/research/dataset-borders-and-changes-of-municipalities
+    (данные скачаны 2026-10-02).
+  retrieved: '2026-10-02'
+  archive_member: t_dict_municipal_districts.xlsx
+  archive_sha256: 319ed22684b77716641bc15b61f7325adc44e9fc47e9be2973d88412d27d21f5
+- path: reference/sberindex_municipal_districts.csv
+  url: https://s.sber.ru/GthXk7
+  sha256: 633917ce38afb54763233ca625050f65b3b38588aa93572392397a84e2d4589c
+  title: Справочник территорий в CSV (все строки и колонки xlsx без преобразований)
+  license: CC BY-SA 4.0
+  citations:
+  - Данные о границах и преобразованиях муниципальных образований. Сбериндекс. Данные
+    доступны по адресу https://sberindex.ru/ru/research/dataset-borders-and-changes-of-municipalities
+    (данные скачаны 2026-10-02).
+  retrieved: '2026-10-02'
+  derived_from: raw/sberindex-municipal/t_dict_municipal_districts.xlsx

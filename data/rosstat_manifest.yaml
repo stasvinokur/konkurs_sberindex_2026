@@ -1,0 +1,22 @@
+source: 'Росстат: численность населения по муниципальным образованиям'
+page: https://rosstat.gov.ru/compendium/document/13282
+values_year: 2023
+values_published: '2023-09-04'
+codes_year: 2024
+bulletins:
+- file: BUL_MO_2023_20230904.xlsx
+  url: https://web.archive.org/web/20230904080244id_/https://rosstat.gov.ru/storage/mediabank/BUL_MO_2023.xlsx
+  bytes: 1315364
+  sha256: 82f4c08b9340618a7abfb6717e8f6ca5a3852b828586e61ff4013b4b98c23c2d
+- file: BUL_MO_2024.xlsx
+  url: https://rosstat.gov.ru/storage/mediabank/BUL_MO_2024.xlsx
+  bytes: 1599578
+  sha256: c831e1b408a6a21e061074f0b3a5a04c2e3bb4f8eabae6c72edff55185e921bd
+territories: 2190
+matched: 2019
+share: 0.9219178082191781
+downloaded: '2026-10-02'
+file: population_2023.csv
+sha256: 482c65226555bf3815412ae44801d6c591ce2ed776548025e450daaa68de800d
+citation: Росстат. Численность населения Российской Федерации по муниципальным образованиям
+  на 1 января 2023 года (статистический бюллетень). https://rosstat.gov.ru/compendium/document/13282

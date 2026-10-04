@@ -1,0 +1,135 @@
+source: Данные СберИндекса (https://sberindex.ru)
+download_url_template: https://sberindex.ru/api/dataset/v1//download/{slug}/{fmt}
+datasets:
+- slug: potrebitelskie-beznalicnye-rashody-na-urovne-munizipalnyh-obrazovanij
+  title: Потребительские безналичные расходы на уровне МО
+  files:
+  - path: raw/potrebitelskie-beznalicnye-rashody-na-urovne-munizipalnyh-obrazovanij/potrebitelskie-beznalicnye-rashody-na-urovne-munizipalnyh-obrazovanij.zip
+    url: https://sberindex.ru/api/dataset/v1//download/potrebitelskie-beznalicnye-rashody-na-urovne-munizipalnyh-obrazovanij/csv
+    sha256: e9a389e57dad7ec723ac58470fda2b2f870062a330efa979cb3952dd7513416d
+    rows: null
+  - path: raw/potrebitelskie-beznalicnye-rashody-na-urovne-munizipalnyh-obrazovanij/potrebitelskie-beznalicnye-rashody-na-urovne-munizipalnyh-obrazovanij.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/potrebitelskie-beznalicnye-rashody-na-urovne-munizipalnyh-obrazovanij/parquet
+    sha256: dbe07d6a3a974ab4fd13258a36382a3b056aa35d12ed6c2b132ae5775115e0f1
+    rows: 303126
+- slug: consumer-spending
+  title: Потребительские расходы
+  files:
+  - path: raw/consumer-spending/consumer-spending.zip
+    url: https://sberindex.ru/api/dataset/v1//download/consumer-spending/csv
+    sha256: 822479b728081490c203c3ae9e1a692a266c159c2f9c0d77314b27b3800d1dad
+    rows: null
+  - path: raw/consumer-spending/consumer-spending.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/consumer-spending/parquet
+    sha256: 78d3520a113262ce18f52f8df2c869ac0c5056e155f66d86e6b75d95ef0dcacf
+    rows: 465
+- slug: consumer-spending-growth
+  title: Потребительские расходы, приросты
+  files:
+  - path: raw/consumer-spending-growth/consumer-spending-growth.zip
+    url: https://sberindex.ru/api/dataset/v1//download/consumer-spending-growth/csv
+    sha256: e3f878758d410c39faeb275f6db62e4f28b38123fbb01abf11d91914e18f9e7e
+    rows: null
+  - path: raw/consumer-spending-growth/consumer-spending-growth.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/consumer-spending-growth/parquet
+    sha256: f8c71ce1da9aef92d7f19a4e7b0a7a33e1481ef622620ad340a06558fbbebe1c
+    rows: 930
+- slug: consumper-spending-index-sa
+  title: Индекс реальных потребительских расходов
+  files:
+  - path: raw/consumper-spending-index-sa/consumper-spending-index-sa.zip
+    url: https://sberindex.ru/api/dataset/v1//download/consumper-spending-index-sa/csv
+    sha256: f3e7908abf801b3644e3dff3eb90c02ca83d00f801fad7dfc211cb466417e05d
+    rows: null
+  - path: raw/consumper-spending-index-sa/consumper-spending-index-sa.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/consumper-spending-index-sa/parquet
+    sha256: 1d3ffef333de4d3cde6237ba9d1fd48753789c9dc9fcca879a56b4978747f1d4
+    rows: 465
+- slug: ver-izmenenie-trat-po-kategoriyam
+  title: Изменение потребительских расходов (недельное)
+  files:
+  - path: raw/ver-izmenenie-trat-po-kategoriyam/ver-izmenenie-trat-po-kategoriyam.zip
+    url: https://sberindex.ru/api/dataset/v1//download/ver-izmenenie-trat-po-kategoriyam/csv
+    sha256: 6248f0db640c760a08409ea7e5559eff6142f68169c0b2f1fe20b64c9976b3f2
+    rows: null
+  - path: raw/ver-izmenenie-trat-po-kategoriyam/ver-izmenenie-trat-po-kategoriyam.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/ver-izmenenie-trat-po-kategoriyam/parquet
+    sha256: a9eb95dcd58f48907b64931e891697b8bb5dd75302da8d1199a2615c7d866df8
+    rows: 6854
+- slug: potrebitelskaya-aktivnost-po-kategoriyam-tovarov-v-razreze-vozrastov
+  title: Потребительская активность
+  files:
+  - path: raw/potrebitelskaya-aktivnost-po-kategoriyam-tovarov-v-razreze-vozrastov/potrebitelskaya-aktivnost-po-kategoriyam-tovarov-v-razreze-vozrastov.zip
+    url: https://sberindex.ru/api/dataset/v1//download/potrebitelskaya-aktivnost-po-kategoriyam-tovarov-v-razreze-vozrastov/csv
+    sha256: 8053516aff464b08ee07e4a42c67baec1254cb1a02cdb143df88291c30a4f910
+    rows: null
+  - path: raw/potrebitelskaya-aktivnost-po-kategoriyam-tovarov-v-razreze-vozrastov/potrebitelskaya-aktivnost-po-kategoriyam-tovarov-v-razreze-vozrastov.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/potrebitelskaya-aktivnost-po-kategoriyam-tovarov-v-razreze-vozrastov/parquet
+    sha256: ed2eb7f2cf5f95920855f7ee5d138f5205b4ac01f7739d682ec0e5d453b14bae
+    rows: 1480
+- slug: indeks-mobilnosti
+  title: Индекс мобильности по СЗФО
+  files:
+  - path: raw/indeks-mobilnosti/indeks-mobilnosti.zip
+    url: https://sberindex.ru/api/dataset/v1//download/indeks-mobilnosti/csv
+    sha256: 348b6f58d54d840e417ffad2ed8f10c3593e70706d8dcbc67d91abf5f63106f8
+    rows: null
+  - path: raw/indeks-mobilnosti/indeks-mobilnosti.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/indeks-mobilnosti/parquet
+    sha256: f16f7d8088c7d0a02ea770915c512343807e65fc5bcc177af3bd64512add5708
+    rows: 594
+- slug: median-wages
+  title: Медианная заработная плата
+  files:
+  - path: raw/median-wages/median-wages.zip
+    url: https://sberindex.ru/api/dataset/v1//download/median-wages/csv
+    sha256: 8d90965d51738271250577a840c8d3a4af8b93ff1250e569c68ee7c4d9607197
+    rows: null
+  - path: raw/median-wages/median-wages.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/median-wages/parquet
+    sha256: 774a364582eb7c0b78cf0daaab183e6ca71c7bdf0cbfcceb0229f9a2f8bfa0c1
+    rows: 1501
+- slug: oboroty-biznesa
+  title: Обороты бизнеса
+  files:
+  - path: raw/oboroty-biznesa/oboroty-biznesa.zip
+    url: https://sberindex.ru/api/dataset/v1//download/oboroty-biznesa/csv
+    sha256: 98f5f3658a640d92cd21971bbab3359bb25d80f6d7ed8012987af77778d1101e
+    rows: null
+  - path: raw/oboroty-biznesa/oboroty-biznesa.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/oboroty-biznesa/parquet
+    sha256: 4e5ac2859930e3f8f8a724c3a4918720b534e647136d999d3fbe4406cff36c2f
+    rows: 2320
+- slug: real-key-interest-rate
+  title: Ключевая ставка в реальном выражении
+  files:
+  - path: raw/real-key-interest-rate/real-key-interest-rate.zip
+    url: https://sberindex.ru/api/dataset/v1//download/real-key-interest-rate/csv
+    sha256: 9437392aba753b0bc9e366d6e92cdd81c020cbd456ccc1dc842e70ecadd7497c
+    rows: null
+  - path: raw/real-key-interest-rate/real-key-interest-rate.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/real-key-interest-rate/parquet
+    sha256: 18f6d1b16600af8b537dda1f83d10eefc7392f5178c4571af4bc71671a3b389c
+    rows: 468
+- slug: nedelnaa-inflazia-v-razreze-analiticeskih-komponentov
+  title: Недельная инфляция по аналитическим компонентам
+  files:
+  - path: raw/nedelnaa-inflazia-v-razreze-analiticeskih-komponentov/nedelnaa-inflazia-v-razreze-analiticeskih-komponentov.zip
+    url: https://sberindex.ru/api/dataset/v1//download/nedelnaa-inflazia-v-razreze-analiticeskih-komponentov/csv
+    sha256: 3c228d9dcc1d5f629ec8d92c6ca500035cbaa768b2ff2770c6d6eeed1678c94b
+    rows: null
+  - path: raw/nedelnaa-inflazia-v-razreze-analiticeskih-komponentov/nedelnaa-inflazia-v-razreze-analiticeskih-komponentov.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/nedelnaa-inflazia-v-razreze-analiticeskih-komponentov/parquet
+    sha256: c896351877d834043b0ed6307d2f53f43db8484b1bf985fc1213b320bae46b5c
+    rows: 5292
+- slug: izmenenie-obema-fot
+  title: Объём фонда оплаты труда
+  files:
+  - path: raw/izmenenie-obema-fot/izmenenie-obema-fot.zip
+    url: https://sberindex.ru/api/dataset/v1//download/izmenenie-obema-fot/csv
+    sha256: 9c102ea24fed8cadb3f385a6b5730beba2467fb81747a729105059e09c7b93e2
+    rows: null
+  - path: raw/izmenenie-obema-fot/izmenenie-obema-fot.parquet
+    url: https://sberindex.ru/api/dataset/v1//download/izmenenie-obema-fot/parquet
+    sha256: 6a9b433d48f3e092f7b74ca0d0d97af18a976d5f6463f63268fd4d0c795d1383
+    rows: 2260

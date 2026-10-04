@@ -1,0 +1,96 @@
+# Закреплённые ревизии весов foundation-моделей (см. THIRD_PARTY_MODELS.md).
+# Использовать только конкретный sha коммита HF, никогда "main"/"latest".
+foundation_models:
+  chronos2:
+    repo_id: amazon/chronos-2
+    revision: 29ec3766d36d6f73f0696f85560a422f50e8498c
+    weights_license: apache-2.0
+  timesfm25:
+    repo_id: google/timesfm-2.5-200m-pytorch
+    revision: 1d952420fba87f3c6dee4f240de0f1a0fbc790e3
+    weights_license: apache-2.0
+
+# Ряды, на которых сравниваются все модели. Prophet обучается на каждый ряд отдельно и стоит
+# ~5 с на подгонку (Stan), поэтому сравнение идёт на стратифицированной подвыборке.
+#
+# Выборка заморожена списком `frozen`. Она отобрана (n_series, seed) на панели, где территории
+# определялись по названиям, и переведена в официальные коды: 1 200 рядов стали 1 201, потому
+# что один из них был склейкой двух МО. Отбор заново на нынешней панели сменил бы ряды, и
+# метрики перестали бы быть сравнимыми с опубликованными. `n_series` и `seed` — параметры
+# того отбора; происхождение списка проверяет `uv run sbx data freeze-samples --check`.
+evaluation_sample:
+  frozen: configs/evaluation_series.csv
+  n_series: 1200
+  seed: 20260916
+
+groups:
+  stats:
+    models: [Naive, SeasonalNaive, AutoETS, AutoTheta, AutoARIMA]
+    season_length: 12
+    n_jobs: -1
+  prophet:
+    n_jobs: 10
+    seed: 20260916
+    tune_series: 40
+    # Верхняя граница внутренней валидации при подборе гиперпараметров. Фактическое значение —
+    # min(inner_horizon_max, горизонт фолда): подбирать параметры на 3 месяцах, а прогнозировать
+    # 12 значило бы настраивать модель не на ту задачу.
+    inner_horizon_min: 3
+    inner_horizon_max: 6
+    params:
+      country_holidays: RU
+      uncertainty_samples: 0
+      changepoint_range: 0.8
+    # Сетка честного подбора: на 12–24 точках линейный тренд Prophet переобучается,
+    # поэтому модель может выбрать плоский тренд и более слабую сезонность.
+    grid:
+      - {growth: linear, seasonality_mode: multiplicative, yearly_fourier_order: 4, changepoint_prior_scale: 0.05}
+      - {growth: linear, seasonality_mode: multiplicative, yearly_fourier_order: 2, changepoint_prior_scale: 0.01}
+      - {growth: linear, seasonality_mode: additive, yearly_fourier_order: 2, changepoint_prior_scale: 0.01}
+      - {growth: flat, seasonality_mode: multiplicative, yearly_fourier_order: 4, changepoint_prior_scale: 0.05}
+      - {growth: flat, seasonality_mode: multiplicative, yearly_fourier_order: 2, changepoint_prior_scale: 0.01}
+      - {growth: flat, seasonality_mode: additive, yearly_fourier_order: 2, changepoint_prior_scale: 0.01}
+  # Основной LightGBM: производственный календарь на целевой месяц (известен заранее) и
+  # параметры по умолчанию. Конфигурация выбрана 2 октября 2026 года после сравнения
+  # вариантов модели на тех же окнах проверки (`artifacts/ablations/sources.csv`): с
+  # календарём модель точнее прежней основной в 9 окнах из 10. Подбор гиперпараметров
+  # (Optuna, `tune: true`) устойчивого выигрыша не дал — модель без подбора точнее в 6 окнах
+  # из 10 — и удлиняет прогон на 20 минут; его настройки оставлены ниже.
+  lgbm:
+    tune: false
+    feature_blocks: [calendar]
+    n_trials: 15
+    inner_origins: 3
+    min_history: 7
+    seed: 20260916
+    num_boost_round: 400
+  chronos2:
+    device: cpu
+    batch_size: 64
+    modes: [univariate, grouped, covariates]
+    quantiles: [0.1, 0.5, 0.9]
+    # Дообучение выключено: на CPU (M4 Pro) LoRA-обучение 120M параметров на пяти фолдах —
+    # часы, при этом zero-shot с ковариатами уже лучшая одиночная модель, а на 24 точках
+    # истории велик риск переобучения. Код готов: добавьте mode: finetuned в modes.
+    finetune:
+      enabled: false
+      mode: lora
+      learning_rate: 0.0001
+      num_steps: 200
+      batch_size: 32
+  timesfm25:
+    max_context: 64
+    # Требуемый критерием горизонт — 12; меньшее значение заставляло бы держать в памяти
+    # две скомпилированные модели (max_horizon входит в ключ кэша).
+    max_horizon: 12
+    per_core_batch_size: 32
+    batch_size: 256
+    quantiles: [0.1, 0.5, 0.9]
+  neural:
+    input_size: 12
+    max_steps: 300
+    val_size: 3
+    patience: 5
+    val_check_steps: 25
+    accelerator: cpu
+    seed: 20260916
