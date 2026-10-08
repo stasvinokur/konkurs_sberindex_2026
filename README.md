@@ -4,12 +4,13 @@
 потребительских расходов муниципальных образований (МО) и раннее выявление структурных
 изменений (шоков).
 
+- Сайт с результатами: https://212-109-220-120.sslip.io — интерактивный лендинг решения
 - Условия конкурса и критерии оценивания: https://sber.ru/sberindex/konkurs_sberindex
 - Методологический отчёт: [reports/methodology.md](reports/methodology.md) · [PDF](reports/methodology.pdf)
 - Разведочный анализ: [reports/eda.md](reports/eda.md) · сравнение моделей: [reports/models.md](reports/models.md) · обнаружение сдвигов: [reports/changepoints.md](reports/changepoints.md) · разборы примеров: [reports/cases.md](reports/cases.md)
 - Лицензии моделей и весов: [THIRD_PARTY_MODELS.md](THIRD_PARTY_MODELS.md)
-- Интерактивный лендинг: `reports/landing/index.html` — один файл, открывается с диска и без
-  сети (шрифты, графики и сценарий встроены); локально ещё `docker compose up -d` и
+- Тот же лендинг в репозитории: `reports/landing/index.html` — один файл, открывается с диска и
+  без сети (шрифты, графики и сценарий встроены); локально ещё `docker compose up -d` и
   http://localhost:8080
 - Демо-ролик лендинга (3 минуты, без звука): [demo.webm](demo.webm)
 - Источник данных: **Данные СберИндекса** (https://sberindex.ru). Условия использования всех
